@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Your Profile{% endblock %}
+{% block content %}
+<h1>Welcome, {{ user['firstname'] }}!</h1>
+<table>
+  <tr><td>Username</td><td>{{ user['username'] }}</td></tr>
+  <tr><td>First Name</td><td>{{ user['firstname'] }}</td></tr>
+  <tr><td>Last Name</td><td>{{ user['lastname'] }}</td></tr>
+  <tr><td>Email</td><td>{{ user['email'] }}</td></tr>
+  <tr><td>Address</td><td>{{ user['address'] }}</td></tr>
+  <tr><td>Uploaded File</td><td>{{ user['filename'] or 'None' }}</td></tr>
+  <tr><td>Word Count</td><td>{{ user['wordcount'] if user['wordcount'] is not none else 'N/A' }}</td></tr>
+</table>
+{% if user['filename'] %}
+  <a class="btn" href="{{ url_for('download') }}">Download File</a>
+{% endif %}
+<a class="btn secondary" href="{{ url_for('logout') }}">Log Out</a>
+{% endblock %}
